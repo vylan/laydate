@@ -1457,8 +1457,7 @@
       options = that.config,
       elem = that.bindElem || options.elem[0],
       valType = that.isInput(elem) ? 'val' : 'html'
-
-    options.position === 'static' || lay(elem)[valType](value || '');
+     options.position === 'static' || lay(elem)[valType](value || options.fill || '');
     return this;
   };
 
@@ -1914,3 +1913,4 @@
   );
 
 }();
+
