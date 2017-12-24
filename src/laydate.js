@@ -408,7 +408,19 @@
       ,
     done: null //控件选择完毕后的回调，点击清空/现在/确定也均会触发
       ,
-    change: null //日期时间改变后的回调
+    change: null, //日期时间改变后的回调
+    // 重新设置最小时间限制
+    resetMin: function(val){
+      var date = new Date(val);
+      this.min={
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        date:date.getDate(),
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds()
+      }
+    }
   };
 
   //多语言
@@ -813,7 +825,7 @@
 
   //提示
   Class.prototype.hint = function (content) {
-    
+
     var that = this,
       options = that.config,
       div = lay.elem('div', {
@@ -828,7 +840,7 @@
     that.hinTimer = setTimeout(function () {
       lay(that.elem).find('.' + ELEM_HINT).remove();
     }, 3000);
-    
+
   };
 
   //获取递增/减后的年月
@@ -1418,7 +1430,6 @@
         lay.extend({}, that.endDate, that.endTime) :
         (options.range ? lay.extend({}, that.startDate, that.startTime) : options.dateTime)),
       format = that.format.concat();
-
     //转义为规定格式
     lay.each(format, function (i, item) {
       if (/yyyy|y/.test(item)) { //年
@@ -1457,7 +1468,7 @@
       options = that.config,
       elem = that.bindElem || options.elem[0],
       valType = that.isInput(elem) ? 'val' : 'html'
-     options.position === 'static' || lay(elem)[valType](value || options.fill || '');
+    options.position === 'static' || lay(elem)[valType](value || options.fill || '');
     return this;
   };
 
@@ -1913,4 +1924,3 @@
   );
 
 }();
-
