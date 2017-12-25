@@ -410,12 +410,12 @@
       ,
     change: null, //日期时间改变后的回调
     // 重新设置最小时间限制
-    resetMin: function(val){
+    resetMin: function (val) {
       var date = new Date(val);
-      this.min={
+      this.min = {
         year: date.getFullYear(),
         month: date.getMonth(),
-        date:date.getDate(),
+        date: date.getDate(),
         hours: date.getHours(),
         minutes: date.getMinutes(),
         seconds: date.getSeconds()
@@ -1462,13 +1462,13 @@
     );
   };
 
-  //赋值
+  //赋值 注意这里不再修改dom，该由angular实现！！
   Class.prototype.setValue = function (value) {
     var that = this,
       options = that.config,
       elem = that.bindElem || options.elem[0],
       valType = that.isInput(elem) ? 'val' : 'html'
-    options.position === 'static' || lay(elem)[valType](value || options.fill || '');
+    // options.position === 'static' || lay(elem)[valType](value || options.fill || '');
     return this;
   };
 
